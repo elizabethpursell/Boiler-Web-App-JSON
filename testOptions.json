@@ -1,0 +1,1250 @@
+{
+    "tests": {
+        "1": {
+            "title": "Heat exchanger temperature is not between inlet and outlet temperature",
+            "type": "default",
+            "sets": [
+                "hx",
+                "supply",
+                "inlet"
+            ],
+            "error": [
+                {
+                    "set2": {
+                        "name": "supply",
+                        "value": "",
+                        "operation": ""
+                    },
+                    "set1": "hx",
+                    "type": "set",
+                    "compare": ">="
+                },
+                "or",
+                {
+                    "set2": {
+                        "name": "inlet",
+                        "value": "",
+                        "operation": ""
+                    },
+                    "set1": "hx",
+                    "type": "set",
+                    "compare": "<="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "hx",
+                        "value": 5.0,
+                        "operation": "+"
+                    },
+                    "set1": "supply",
+                    "type": "custom",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "hx",
+                        "value": 5.0,
+                        "operation": "-"
+                    },
+                    "set1": "inlet",
+                    "type": "custom",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Temperature (\u00b0F)",
+                "right": "Temperature (\u00b0F)"
+            },
+            "options": {
+                "hx": {
+                    "title": "Heat Exchanger Temperature",
+                    "units": "\u00b0F",
+                    "thresholdType": "custom",
+                    "thresholdFill": "none",
+                    "thresholdLabel": "Outlet Temperature > Heat Exchanger Temperature+5.0 and Inlet Temperature < Heat Exchanger Temperature-5.0",
+                    "axisID": "left"
+                },
+                "supply": {
+                    "title": "Outlet Temperature",
+                    "units": "\u00b0F",
+                    "thresholdType": "custom",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> Heat Exchanger Temperature+5.0",
+                    "axisID": "left"
+                },
+                "inlet": {
+                    "title": "Inlet Temperature",
+                    "units": "\u00b0F",
+                    "thresholdType": "custom",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< Heat Exchanger Temperature-5.0",
+                    "axisID": "left"
+                }
+            },
+            "causes": "faulty sensors or dirty heat exchanger",
+            "importance": "heat exchanger heats the water from the inlet and releases it at the outlet; needs to occur regularly to produce heat efficiently"
+        },
+        "2": {
+            "title": "Inlet/outlet temperature difference is negative while fan speed is positive",
+            "type": "default",
+            "sets": [
+                "difference",
+                "fan"
+            ],
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "difference",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 1.0,
+                        "operation": ""
+                    },
+                    "set1": "difference",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Inlet and Outlet Temperature Difference (\u00b0F)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "difference": {
+                    "title": "Inlet and Outlet Temperature Difference",
+                    "units": "\u00b0F",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 1.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 2000.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "faulty sensors or flow of water is reversed",
+            "importance": "outlet temperature must be higher than inlet temperature to produce heat; if the fan is on, the unit is on, confirming the faulty equipment"
+        },
+        "3": {
+            "title": "Exhaust temperature exists while heat exchanger temperature difference is 0",
+            "sets": [
+                "stack_diff",
+                "hx_diff"
+            ],
+            "type": "difference",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "hx_diff",
+                    "type": "value",
+                    "compare": "=="
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "stack_diff",
+                    "type": "value",
+                    "compare": "!="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "hx_diff",
+                    "type": "abs",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Temperature Difference (\u00b0F)",
+                "right": "Temperature Difference (\u00b0F)"
+            },
+            "options": {
+                "stack_diff": {
+                    "title": "Exhaust Temperature Difference",
+                    "units": "\u00b0F",
+                    "thresholdType": "exists",
+                    "thresholdFill": "all",
+                    "thresholdLabel": "any",
+                    "axisID": "left"
+                },
+                "hx_diff": {
+                    "title": "Heat Exchanger Temperature Difference",
+                    "units": "\u00b0F",
+                    "thresholdType": "abs",
+                    "thresholdFill": "between",
+                    "thresholdLabel": "< 3.0 and > -3.0",
+                    "axisID": "left"
+                }
+            },
+            "causes": "faulty sensor",
+            "importance": "unit is running or exhaust gases are coming from another boiler"
+        },
+        "4": {
+            "title": "Fan speed difference and flame signal difference have opposite signs",
+            "sets": [
+                "fan_diff",
+                "flame_diff"
+            ],
+            "type": "difference",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan_diff",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "or",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan_diff",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 1000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan_diff",
+                    "type": "abs",
+                    "compare": "<"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "abs",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Fan Speed Difference (RPM)",
+                "right": "Flame Signal Difference (mA / V / %)"
+            },
+            "options": {
+                "fan_diff": {
+                    "title": "Fan Speed Difference",
+                    "units": "RPM",
+                    "thresholdType": "abs",
+                    "thresholdFill": "between",
+                    "thresholdLabel": "< 1000.0 and > -1000.0",
+                    "axisID": "left"
+                },
+                "flame_diff": {
+                    "title": "Flame Signal Difference",
+                    "units": "mA / V / %",
+                    "thresholdType": "abs",
+                    "thresholdFill": "between",
+                    "thresholdLabel": "< 3.0 and > -3.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "faulty flame ignition rod, polarity is backwards, or faulty sensor",
+            "importance": "unit is not igniting at the correct time"
+        },
+        "5": {
+            "title": "Inlet/outlet temperature difference is positive while flame signal is 0",
+            "sets": [
+                "difference",
+                "flame"
+            ],
+            "type": "difference",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "difference",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": -1.0,
+                        "operation": ""
+                    },
+                    "set1": "difference",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Inlet and Outlet Temperature Difference (\u00b0F)",
+                "right": "Flame Signal (mA / V / %)"
+            },
+            "options": {
+                "difference": {
+                    "title": "Inlet and Outlet Temperature Difference",
+                    "units": "\u00b0F",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> -1.0",
+                    "axisID": "left"
+                },
+                "flame": {
+                    "title": "Flame Signal",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 3.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "incorrect valve position and/or pump operation",
+            "importance": "water is passing through the exchanger while unit is off or the exchanger is flowing through an off piece of equipment"
+        },
+        "6": {
+            "title": "Inlet/outlet temperature difference is positive while fan speed is 0",
+            "sets": [
+                "difference",
+                "fan"
+            ],
+            "type": "difference",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": "=="
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "difference",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": -1.0,
+                        "operation": ""
+                    },
+                    "set1": "difference",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Inlet and Outlet Temperature Difference (\u00b0F)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "difference": {
+                    "title": "Inlet and Outlet Temperature Difference",
+                    "units": "\u00b0F",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> -1.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 2000.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "faulty fan signal and/or fan failed",
+            "importance": "fan is off while the unit is running, preventing the unit from cooling properly"
+        },
+        "7": {
+            "title": "Firing rate difference and flame signal difference have opposite signs",
+            "sets": [
+                "firerate_diff",
+                "flame_diff"
+            ],
+            "type": "difference",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate_diff",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "or",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate_diff",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate_diff",
+                    "type": "abs",
+                    "compare": "<"
+                },
+                "or",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "abs",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Current Difference (mA / V / %)",
+                "right": "Current Difference (mA / V / %)"
+            },
+            "options": {
+                "firerate_diff": {
+                    "title": "Firing Rate Difference",
+                    "units": "mA / V / %",
+                    "thresholdType": "abs",
+                    "thresholdFill": "between",
+                    "thresholdLabel": "< 3.0 and > -3.0",
+                    "axisID": "left"
+                },
+                "flame_diff": {
+                    "title": "Flame Signal Difference",
+                    "units": "mA / V / %",
+                    "thresholdType": "abs",
+                    "thresholdFill": "between",
+                    "thresholdLabel": "< 3.0 and > -3.0",
+                    "axisID": "left"
+                }
+            },
+            "causes": "faulty flame signal connections",
+            "importance": "unit is not igniting correctly"
+        },
+        "8": {
+            "title": "Firing rate is 0 while fan speed is positive",
+            "sets": [
+                "firerate",
+                "fan"
+            ],
+            "type": "default",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Firing Rate (mA / V / %)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "firerate": {
+                    "title": "Firing Rate",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 3.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 2000.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "fan operating just before or just after ignition; if occurring abruptly, flame sensor is faulty",
+            "importance": "unit is not igniting correctly"
+        },
+        "9": {
+            "title": "Flame signal is 0 while fan speed is positive",
+            "sets": [
+                "flame",
+                "fan"
+            ],
+            "type": "default",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "<"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Flame Signal (mA / V / %)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "flame": {
+                    "title": "Flame Signal",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 3.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 2000.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "fan operating just before or just after ignition; if occurring for long periods of time, fan is faulty",
+            "importance": "unit is not igniting correctly"
+        },
+        "10": {
+            "title": "Firing rate is positive while flame signal is 0",
+            "sets": [
+                "firerate",
+                "flame"
+            ],
+            "type": "default",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": -1.0,
+                        "operation": ""
+                    },
+                    "set1": "firerate",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Current (mA / V / %)",
+                "right": "Current (mA / V / %)"
+            },
+            "options": {
+                "firerate": {
+                    "title": "Firing Rate",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> -1.0",
+                    "axisID": "left"
+                },
+                "flame": {
+                    "title": "Flame Signal",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 3.0",
+                    "axisID": "left"
+                }
+            },
+            "causes": "faulty flame sensor; incorrect wiring of ignition equipment",
+            "importance": "unit is firing at the incorrect time"
+        },
+        "11": {
+            "title": "Drastic changes in flame signal difference while fan speed is zero",
+            "sets": [
+                "flame_diff",
+                "fan"
+            ],
+            "type": "difference",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.2,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame_diff",
+                    "type": "abs",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Flame Signal Difference (mA / V / %)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "flame_diff": {
+                    "title": "Flame Signal Difference",
+                    "units": "mA / V / %",
+                    "thresholdType": "abs",
+                    "thresholdFill": "split",
+                    "thresholdLabel": "> 3.0 or < -3.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 2000.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "ignition equipment is faulty, dirty, or has bad connection; check ignition rod and sensor",
+            "importance": "unit is not igniting correctly"
+        },
+        "12": {
+            "title": "Flame signal is less than 10 minutes at a time",
+            "sets": [
+                "flame",
+                "fan"
+            ],
+            "type": "duration",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": "!="
+                }
+            ],
+            "errorDuration": {
+                "value": 10.0,
+                "compare": "<"
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                }
+            ],
+            "warningDuration": {
+                "value": 20.0,
+                "compare": "<"
+            },
+            "axisTitles": {
+                "left": "Flame Signal (mA / V / %)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "flame": {
+                    "title": "Flame Signal",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 0.0 for <20.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 2000.0 for < 20.0 minutes",
+                    "axisID": "right"
+                }
+            },
+            "causes": "boiler is short cycling; unit is operating too quickly and/or firing time is too short",
+            "importance": "short cycling reduces efficiency"
+        },
+        "13": {
+            "title": "Flame signal is 0 and fan speed is positive for over 90 seconds at a time",
+            "sets": [
+                "flame",
+                "fan"
+            ],
+            "type": "duration",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": 1.5,
+                "compare": ">"
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 3.0,
+                        "operation": ""
+                    },
+                    "set1": "flame",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": 0.5,
+                "compare": ">"
+            },
+            "axisTitles": {
+                "left": "Flame Signal (mA / V / %)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "flame": {
+                    "title": "Flame Signal",
+                    "units": "mA / V / %",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 3.0 for > 0.5 minutes",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 2000.0 for > 0.5 minutes",
+                    "axisID": "right"
+                }
+            },
+            "causes": "faulty fan",
+            "importance": "unit is not igniting correctly; fan is not cooling properly"
+        },
+        "14": {
+            "title": "Heating degree days are 0 while fan speed is positive",
+            "sets": [
+                "hdd",
+                "fan"
+            ],
+            "type": "daily",
+            "error": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 0.0,
+                        "operation": ""
+                    },
+                    "set1": "hdd",
+                    "type": "value",
+                    "compare": "=="
+                }
+            ],
+            "errorDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "warning": [
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 2000.0,
+                        "operation": ""
+                    },
+                    "set1": "fan",
+                    "type": "value",
+                    "compare": ">"
+                },
+                "and",
+                {
+                    "set2": {
+                        "name": "",
+                        "value": 10.0,
+                        "operation": ""
+                    },
+                    "set1": "hdd",
+                    "type": "value",
+                    "compare": "<"
+                }
+            ],
+            "warningDuration": {
+                "value": "",
+                "compare": ""
+            },
+            "axisTitles": {
+                "left": "Heating Degree Days (HDD)",
+                "right": "Fan Speed (RPM)"
+            },
+            "options": {
+                "hdd": {
+                    "title": "Heating Degree Days",
+                    "units": "HDD",
+                    "thresholdType": "value",
+                    "thresholdFill": "below",
+                    "thresholdLabel": "< 10.0",
+                    "axisID": "left"
+                },
+                "fan": {
+                    "title": "Fan Speed",
+                    "units": "RPM",
+                    "thresholdType": "value",
+                    "thresholdFill": "above",
+                    "thresholdLabel": "> 2000.0",
+                    "axisID": "right"
+                }
+            },
+            "causes": "Unit is running when unnecessary",
+            "importance": "resources are being wasted to produce heat during warm weather"
+        }
+    }
+}
