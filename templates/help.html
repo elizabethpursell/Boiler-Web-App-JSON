@@ -1,0 +1,578 @@
+{% extends 'base.html' %}
+
+{% block title %} 
+    NURO Analysis | Help
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <h2 id="error"></h2>
+    </div>
+    {% if authenticated %}
+        <div id="top" class="page-section mx-0 mx-sm-5">
+            <div class="mt-0 mt-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row px-5">
+                    <h1 class="bold">NURO Analysis Guide</h1>
+                    <p>Table of Contents</p>
+                    <hr class="my-4">
+                </div>
+                <div class="row justify-content-between mx-2 gy-4 gx-0 px-3 px-sm-5 d-flex align-items-center">
+                    <div class="col-12 col-xxl-7 pe-xxl-5 list-group list-group-flush contents-list">
+                        <a class="list-group-item list-group-item-action" href="#features">Features</a>
+                        <a class="list-group-item list-group-item-action" href="#account">Account Information</a>
+                        <a class="list-group-item list-group-item-action d-flex collapse-animation" data-bs-toggle="collapse" href="#analyze-links" role="button" aria-expanded="false" aria-controls="analyze-links">Analyze Boilers<i class="fa-solid fa-chevron-right ms-auto align-self-center collapse-right"></i></a>
+                        <div id="analyze-links" class="list-group list-group-flush bg-black collapse">
+                            <a class="list-group-item list-group-item-action" href="#analyze-init">Initializing Analysis</a>
+                            <a class="list-group-item list-group-item-action" href="#analyze-boilers">Available Boilers</a>
+                            <a class="list-group-item list-group-item-action" href="#analyze-time">Selecting Time Intervals</a>
+                            <a class="list-group-item list-group-item-action" href="#analyze-summary">Error Summary</a>
+                            <a class="list-group-item list-group-item-action" href="#analyze-tests">Test Cases</a>
+                            <a class="list-group-item list-group-item-action" href="#analyze-graphs">Generating Graphs</a>
+                        </div>
+                        <a class="list-group-item list-group-item-action d-flex collapse-animation" data-bs-toggle="collapse" href="#graphs-links" role="button" aria-expanded="false" aria-controls="graphs-links">Graph Features<i class="fa-solid fa-chevron-right ms-auto align-self-center collapse-right"></i></a>
+                        <div id="graphs-links" class="list-group list-group-flush bg-black collapse">
+                            <a class="list-group-item list-group-item-action" href="#graphs-tools">Crosshair and Tooltips</a>
+                            <a class="list-group-item list-group-item-action" href="#graphs-datasets">Dataset Popups</a>
+                            <a class="list-group-item list-group-item-action" href="#graphs-remove">Remove/Add Datasets</a>
+                            <a class="list-group-item list-group-item-action" href="#graphs-zoom">Zoom and Pan</a>
+                        </div>
+                        <a class="list-group-item list-group-item-action d-flex collapse-animation" data-bs-toggle="collapse" href="#mobile-links" role="button" aria-expanded="false" aria-controls="mobile-links">Mobile Support<i class="fa-solid fa-chevron-right ms-auto align-self-center collapse-right"></i></a>
+                        <div id="mobile-links" class="list-group list-group-flush bg-black collapse">
+                            <a class="list-group-item list-group-item-action" href="#mobile-sidebar">Sidebar Navigation</a>
+                            <a class="list-group-item list-group-item-action" href="#mobile-options">Graph Options</a>
+                            <a class="list-group-item list-group-item-action" href="#mobile-zoom">Zoom and Pan</a>
+                            <a class="list-group-item list-group-item-action" href="#mobile-hover">Hover Features</a>
+                        </div>
+                        <a class="list-group-item list-group-item-action" href="#test">Test Explanations</a>
+                    </div>
+                    <div class="col-12 col-xxl-5 d-flex align-items-center justify-content-center justify-content-xxl-end">
+                        <div class="card bg-dark" style="max-width: 550px;">
+                            <div class="row g-0">
+                                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                                    <img id="pdf-icon" src="{{ url_for('static', filename='img/help-pdf.PNG')}}" class="img-fluid rounded-start p-2" loading="lazy" decoding="async"/>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold">NURO Analysis Guide PDF</h4>
+                                        <p class="card-text">PDF version is available here</p>
+                                        <a href="{{ url_for('static', filename='pdf/NURO Analysis Guide.pdf') }}" target="_blank" class="btn btn-primary mt-auto" role="button" aria-label="Open PDF Button">Open PDF</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="features" class="page-section mx-0 mx-sm-5" style="padding-top: 68px; margin-top: -68px;">
+            <div class="mt-3 mt-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row mx-2 px-3 px-sm-5">
+                    <h1 class="bold text-center">Features</h1>
+                    <p class="text-center text-white-50">NURO Analysis is a web app that uses the data from NURO Connect to identify error points and develop solutions based on specific tests.</p>
+                </div>
+                <div class="row mx-2 px-3 px-xl-5 g-2">
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100" style="background-color: #004b87; border: 0 solid transparent;">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-universal-access fa-5x align-self-center p-2" role="img" aria-hidden="true"></i>
+                                <h4 class="card-title bold">Complete Data Access</h4>
+                                <p class="card-text text-white-50 px-0 px-xl-3">Authorizes data analysis of boilers from all sites and time periods</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100" style="background-color: #004b87; border: 0 solid transparent;">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-triangle-exclamation fa-5x align-self-center p-2" role="img" aria-hidden="true"></i>
+                                <h4 class="card-title bold">Error Diagnostics</h4>
+                                <p class="card-text text-white-50 px-0 px-xl-3">Conducts numerous tests to classify equipment errors and their urgencies</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100" style="background-color: #004b87; border: 0 solid transparent;">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-eye fa-5x align-self-center p-2" role="img" aria-hidden="true"></i>
+                                <h4 class="card-title bold">Predictive Technology</h4>
+                                <p class="card-text text-white-50 px-0 px-xl-3">Highlights warning points where data is trending towards test failure</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100" style="background-color: #004b87; border: 0 solid transparent;">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-arrow-up-right-dots fa-5x align-self-center p-2" role="img" aria-hidden="true"></i>
+                                <h4 class="card-title bold">Solution-Driven</h4>
+                                <p class="card-text text-white-50 px-0 px-xl-3">Provides error summaries to pinpoint causes and recommend solutions for test failures</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100" style="background-color: #004b87; border: 0 solid transparent;">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-chart-column fa-5x align-self-center p-2" role="img" aria-hidden="true"></i>
+                                <h4 class="card-title bold">Data Visualization</h4>
+                                <p class="card-text text-white-50 px-0 px-xl-3">Generates graphs comparing relevant data and identifying error and warning points</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-4">
+                        <div class="card h-100" style="background-color: #004b87; border: 0 solid transparent;">
+                            <div class="card-body text-center">
+                                <i class="fa-solid fa-handshake fa-5x align-self-center p-2" role="img" aria-hidden="true"></i>
+                                <h4 class="card-title bold">NURO Connect</h4>
+                                <p class="card-text text-white-50 px-0 px-xl-3">Collaborates with NURO Connect to cultivate data transparency and error analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="account" class="page-section mx-0 mx-sm-5" style="padding-top: 68px; margin-top: -68px;">
+            <div class="mt-3 mt-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row py-2 mx-2 px-3 px-sm-5">
+                    <h1 class="bold text-center">Account Information</h1>
+                    <p class="text-center text-white-50">NURO Analysis utilizes the same credentials as NURO Connect.</p>
+                </div>
+                <div class="row mx-2 px-3 px-xl-5 g-2">
+                    <div class="col-12 col-sm-6 d-flex align-items-center justify-content-center">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Profile</h4>
+                                        <p class="card-text">Use the button in the sidebar, the option in the profile dropdown, or the button below to access your account information.</p>
+                                        <a href="{{ url_for('profile') }}" class="btn btn-primary mt-auto" aria-current="false" id="profileLink" role="button" aria-label="Profile Button">My Profile</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/profile-help.png') }}" class="img-fluid rounded-end p-2" alt="Login Screen" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 d-flex align-items-center justify-content-center">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Logging Out</h4>
+                                        <p class="card-text">Logout using the button in the sidebar, the option in the profile dropdown, or the button below.</p>
+                                        <button id="logout_button" class="btn btn-primary mt-auto" type="button" onClick="showConfirm()" aria-label="Logout Button">Logout</button>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/logout-help.png') }}" class="img-fluid rounded-end p-2" alt="Logout Screen" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="analyze" class="page-section mx-0 mx-sm-5" style="padding-top: 68px; margin-top: -68px;">
+            <div class="mt-3 mt-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row py-2 mx-2 px-3 px-sm-5">
+                    <h1 class="bold text-center">Analyze Boilers</h1>
+                    <p class="text-center text-white-50">Use this section as a guide through the boiler analysis process.</p>
+                </div>
+                
+                <div class="row py-2 mx-2 px-3 px-xl-5 g-2">
+                    <div id="analyze-init" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Initializing Analysis</h4>
+                                        <p class="card-text">
+                                            To open the Available Boilers page, press the blue "Conduct Analysis" button on the homepage or the "Analyze Boilers" option on the sidebar.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/init-help.png') }}" alt="Home Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="analyze-boilers" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Available Boilers</h4>
+                                        <p class="card-text">
+                                            On the Analyze Boilers page, press the blue "Run Diagnostics" button under the desired boiler to open its Diagnostics page.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/boilers-help.png') }}" alt="Available Boilers Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="analyze-time" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Selecting Time Intervals</h4>
+                                        <p class="card-text">
+                                            On the Diagnostics page, fill out the form with a start time, end time, and time interval to select the time period for analysis. 
+                                            The start time must be before the end time, and NURO Connect must have been connected during the time period. Press the blue
+                                            "Submit" button when the times have been entered.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/diagnostics-help.png') }}" alt="Diagnostics Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="analyze-summary" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-7">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Error Summary
+                                            <button type="button" id="error-types-btn" aria-label="Error Types Popup" class="btn btn-secondary" data-bs-toggle="popover" data-bs-placement="top" data-bs-container="body" style="padding: 1px 8px;">
+                                                <i class="fa-solid fa-question" role="img" aria-hidden="true"></i>
+                                            </button>
+                                        </h4>
+                                        <div hidden>
+                                            <div id="error-types-popover" data-name="popover-options">
+                                                <h5 class="bold text-center">Error Types</h5>
+                                                <ul class="text-start">
+                                                    <li>
+                                                        <b>Red Errors</b>: These are from tests that have a failure rate of at least 25%. They are important to address as they are the main sources of
+                                                        error for the boiler.
+                                                    </li>
+                                                    <li>
+                                                        <b>Yellow Errors</b>: These are from tests that have a failure rate under 25% but over 0%. They are less urgent but can identify the impact of
+                                                        red errors on the performance of other parts of the boiler and can prevent further equipment error if monitored.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">
+                                            After the analysis is complete, a popup will open showing a summary of the test results. This will give suggestions 
+                                            on how to eliminate future errors, improve efficiency, and find potential solutions. Press the "x" button to close the popup. To open the summary
+                                            again, press the blue "Open Summary" button. The yellow errors are not shown by default. Press the "Yellow Errors" button to show these messages.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/summary-help.png') }}" alt="Error Summary Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="analyze-tests" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Test Cases
+                                            <button type="button" id="test-types-btn" aria-label="Test Types Popup" class="btn btn-secondary" data-bs-toggle="popover" data-bs-placement="top" data-bs-container="body" style="padding: 1px 8px;">
+                                                <i class="fa-solid fa-question" role="img" aria-hidden="true"></i>
+                                            </button>
+                                        </h4>
+                                        <div hidden>
+                                            <div id="test-types-popover" data-name="popover-options">
+                                                <h5 class="bold text-center">Test Types</h5>
+                                                <ul class="text-start">
+                                                    <li><b>Red Tests</b>: These tests failed over 25% of the time and are the main source of inefficiency in the boiler.</li>
+                                                    <li>
+                                                        <b>Yellow Tests</b>: These tests failed under 25% of the time but did not pass 100%. They are often the byproduct of other red tests or are
+                                                        trending towards red. Check these tests to prevent future performance issues.
+                                                    </li>
+                                                    <li><b>Green Tests</b>: These tests had a 0% error.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">
+                                            There are numerous tests to analyze the performance of the boiler. They compare specific datasets to determine if all parts of the boiler are working
+                                            efficiently.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/tests-help.png') }}" alt="Test Cases Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="analyze-graphs" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Generating Graphs</h4>
+                                        <p class="card-text">
+                                            Press the grey "Generate Timeline Graph" button to open a test's graph. Press the grey "Generate Binary Graph" button to
+                                            show the pass/fail/warning graph that highlights the error and warning statuses. For further help, press the grey
+                                            question mark button.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/graphs-help.png') }}" alt="Graphs Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="graphs" class="page-section mx-0 mx-sm-5" style="padding-top: 68px; margin-top: -68px;">
+            <div class="mt-3 mt-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row py-2 mx-2 px-3 px-sm-5">
+                    <h1 class="bold text-center">Graph Features</h1>
+                    <p class="text-center text-white-50">Use these tools to easily visualize the data of each test.</p>
+                </div>
+                
+                <div class="row py-2 mx-2 px-3 px-xl-5 g-2">
+                    <div id="graphs-tools" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Crosshair and Tooltips</h4>
+                                        <p class="card-text">
+                                            Hover over the graph to show a crosshair that highlights the data points for the selected date and time. This will also display a tooltip that shows
+                                            the labels, values, and colors for the datasets, as well as the test status for that point.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/crosshair-help.png') }}" class="img-fluid rounded-end p-2" alt="Crosshair Screen" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="graphs-datasets" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Dataset Popups</h4>
+                                        <p class="card-text">
+                                            Hover the dataset names on the legend to show the popup information for each dataset. Information includes error point conditions, warning point
+                                            thresholds, and axis usage.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/dataset-help.png') }}" class="img-fluid rounded-end p-2" alt="Dataset Popup Screen" loading="lazy" decoding="async" width="500" height="auto"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="graphs-remove" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Remove/Add Datasets</h4>
+                                        <p class="card-text">
+                                            On the graph legend, press a dataset's name to hide its points. Press the dataset's name again to add the points back to the graph. This is useful to remove
+                                            warning points and only show error points, vice versa.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/remove-help.png') }}" class="img-fluid rounded-end p-2" alt="Remove Dataset Screen" loading="lazy" decoding="async" width="500" height="auto"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="graphs-zoom" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Zoom and Pan</h4>
+                                        <p class="card-text">
+                                            To zoom in, drag the mouse over the desired values or scroll the mouse wheel. To pan across values while zoomed in, press CTRL and use the mouse to drag
+                                            to the desired points. Press the grey reset button to revert to the original graph.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/zoom-help.png') }}" class="img-fluid rounded-end p-2" alt="Zoom Graph Screen" loading="lazy" decoding="async" width="500" height="auto"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mobile" class="page-section mx-0 mx-sm-5" style="padding-top: 68px; margin-top: -68px;">
+            <div class="mt-3 mt-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row py-2 mx-2 px-3 px-sm-5">
+                    <h1 class="bold text-center">Mobile Support</h1>
+                    <p class="text-center text-white-50">NURO Analysis supports mobile devices through some user interface modifications.</p>
+                </div>
+                
+                <div class="row py-2 mx-2 px-3 px-xl-5 g-2">
+                    <div id="mobile-sidebar" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Sidebar Navigation</h4>
+                                        <p class="card-text">
+                                            Press the grey button in the top left corner to open the sidebar. The sidebar will help navigate around the site.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/sidebar-help.png') }}" alt="Sidebar Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="mobile-options" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Graph Options</h4>
+                                        <p class="card-text">
+                                            Press the grey "Options" button of the desired test to open the graph dropdown. The "Generate Timeline Graph" option
+                                            opens the test graph. The "Generate Binary Graph" option opens the pass/fail/warning graph to easily see when the data fails the test.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/options-help.png') }}" alt="Graph Options Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="mobile-zoom" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Zoom and Pan</h4>
+                                        <p class="card-text">
+                                            To zoom in/out, pinch the graph. To pan to other data points while zoomed in, drag across the graph.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/options-zoom.png') }}" alt="Mobile Zoom Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="mobile-hover" class="col-12 col-xxl-6 d-flex align-items-center justify-content-center" style="padding-top: 80px; margin-top: -68px;">
+                        <div class="card bg-dark text-white h-100">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <div class="card-body d-flex flex-column h-100 text-center">
+                                        <h4 class="card-title bold py-3">Hover Features</h4>
+                                        <p class="card-text">
+                                            All hover features are accessible for mobile through touch. Help popups can be opened with one press. The graph crosshair can be displayed by
+                                            pressing the desired point. Dataset popups and warning thresholds can be shown by double tapping the legend label. One tap would still remove/add
+                                            the dataset.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-7 d-flex align-items-center justify-content-center">
+                                    <img src="{{ url_for('static', filename='img/hover-help.png') }}" alt="Mobile Hover Screen" class="img-fluid rounded-end p-2" loading="lazy" decoding="async"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="test" class="page-section mx-0 mx-sm-5" style="padding-top: 68px; margin-top: -68px;">
+            <div class="my-3 my-sm-5 py-5 text-white rounded mx-auto" style="background-color: #004b87; max-width: 1600px;">
+                <div class="row py-2 mx-2 px-3 px-sm-5">
+                    <h1 class="bold text-center">Test Explanations</h1>
+                    <p class="text-center text-white-50">Each test's error condition, cause, and importance can be found here.</p>
+                </div>
+                
+                <div id="test-table" class="row py-2 mx-2 px-3 px-xl-5 g-2 d-none d-md-flex">
+                    <div style="padding-top: 80px; margin-top: -68px;">
+                        <div class="row bg-dark pt-3 pb-2" style="border-bottom: 1px solid black;">
+                            <div id="test-header" class="py-1 col-2 col-xxl-1 h4 bold">Test</div>
+                            <div id="error-header" class="py-1 col-3 h4 bold">Error Condition</div>
+                            <div id="causes-header" class="py-1 col-3 col-xxl-4 h4 bold">Causes</div>
+                            <div id="importance-header" class="py-1 col-4 h4 bold">Importance</div>
+                        </div>
+                        
+                        {% for test in testExplanations %}
+                            <div class="row bg-dark py-2" style="border-bottom: 1px solid black;">
+                                <div class="col-2 col-xxl-1">Test {{ test["name"] }}</div>
+                                <div class="col-3">{{ test["error"] }}</div>
+                                <div class="col-3 col-xxl-4">{{ test["causes"] }}</div>
+                                <div class="col-4">{{ test["importance"] }}</div>
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+                
+                <div class="row py-2 mx-2 px-3 px-xl-5 g-2 d-flex d-md-none">
+                    <div style="padding-top: 80px; margin-top: -68px;">
+                        <div class="accordion accordion-flush" id="test-accordion">
+                        
+                            {% for test in testExplanations %}
+                                <div class="accordion-item">
+                                    <h4 class="accordion-header" id="test{{ test['name'] }}-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#test{{ test['name'] }}" aria-expanded="false" aria-controls="test{{ test['name'] }}">
+                                            <p class="h5 bold">Test {{ test["name"] }}</p>
+                                        </button>
+                                    </h4>
+                                    <div id="test{{ test['name'] }}" class="accordion-collapse collapse" aria-labeledby="test{{ test['name'] }}-header">
+                                        <div class="accordion-body">
+                                            <ul>
+                                                <li><b>Error Condition</b>: {{ test["error"] }}</li>
+                                                <li><b>Causes</b>: {{ test["causes"] }}</li>
+                                                <li><b>Importance</b>: {{ test["importance"] }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <button onclick="toTop()" id="top-btn" title="Go to top" class="btn btn-secondary"><i class="fa-solid fa-arrow-up"></i></button>
+    {% endif %}
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='js/help.js') }}" defer></script>
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+{% endblock %}
