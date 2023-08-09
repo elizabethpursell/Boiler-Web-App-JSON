@@ -1,0 +1,280 @@
+{
+    "sets": {
+        "data": {
+            "hx": {
+                "title": "Heat Exchanger Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "supply": {
+                "title": "Outlet Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "inlet": {
+                "title": "Inlet Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "stack": {
+                "title": "Exhaust Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "oda": {
+                "title": "Outdoor Air Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "header": {
+                "title": "Header Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "dhw": {
+                "title": "DHW Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "chsetpoint": {
+                "title": "CH Setpoint",
+                "measurement": "setpoint",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "dhwsetpoint": {
+                "title": "DHW Setpoint",
+                "measurement": "setpoint",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "dhwtanksetpoint": {
+                "title": "DHW Tank Setpoint",
+                "measurement": "setpoint",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "difference": {
+                "title": "Inlet/Outlet Temperature Difference",
+                "measurement": "difference",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "hx_diff": {
+                "title": "Heat Exchanger Temperature Difference",
+                "measurement": "difference",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "stack_diff": {
+                "title": "Exhaust Temperature Difference",
+                "measurement": "difference",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "flame": {
+                "title": "Flame Signal",
+                "measurement": "default",
+                "unitType": "current",
+                "units": "mA / V / %"
+            },
+            "firerate": {
+                "title": "Firing Rate",
+                "measurement": "default",
+                "unitType": "current",
+                "units": "mA / V / %"
+            },
+            "flame_diff": {
+                "title": "Flame Signal Difference",
+                "measurement": "difference",
+                "unitType": "current",
+                "units": "mA / V / %"
+            },
+            "firerate_diff": {
+                "title": "Firing Rate Difference",
+                "measurement": "difference",
+                "unitType": "current",
+                "units": "mA / V / %"
+            },
+            "fan": {
+                "title": "Fan Speed",
+                "measurement": "default",
+                "unitType": "frequency",
+                "units": "RPM"
+            },
+            "fan_diff": {
+                "title": "Fan Speed Difference",
+                "measurement": "difference",
+                "unitType": "frequency",
+                "units": "RPM"
+            }
+        },
+        "dailyWeather": {
+            "tavgF_day": {
+                "title": "Average Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "tminF_day": {
+                "title": "Minimum Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "tmaxF_day": {
+                "title": "Maximum Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "prcpIN_day": {
+                "title": "Precipitation",
+                "measurement": "default",
+                "unitType": "height",
+                "units": "in"
+            },
+            "wspdMPH_day": {
+                "title": "Average Wind Speed",
+                "measurement": "default",
+                "unitType": "speed",
+                "units": "mph"
+            },
+            "presPSI_day": {
+                "title": "Average Pressure",
+                "measurement": "default",
+                "unitType": "pressure",
+                "units": "psi"
+            },
+            "tavg": {
+                "title": "Average Temperature",
+                "measurement": "metric",
+                "unitType": "temperature",
+                "units": "\u00b0C"
+            },
+            "tmin": {
+                "title": "Minimum Temperature",
+                "measurement": "metric",
+                "unitType": "temperature",
+                "units": "\u00b0C"
+            },
+            "tmax": {
+                "title": "Maximum Temperature",
+                "measurement": "metric",
+                "unitType": "temperature",
+                "units": "\u00b0C"
+            },
+            "prcp": {
+                "title": "Precipitation",
+                "measurement": "metric",
+                "unitType": "height",
+                "units": "mm"
+            },
+            "wspd": {
+                "title": "Average Wind Speed",
+                "measurement": "metric",
+                "unitType": "speed",
+                "units": "km / h"
+            },
+            "pres": {
+                "title": "Average Pressure",
+                "measurement": "metric",
+                "unitType": "pressure",
+                "units": "hPa"
+            },
+            "hdd": {
+                "title": "Heating Degree Days",
+                "measurement": "default",
+                "unitType": "other",
+                "units": "HDD"
+            },
+            "wdir": {
+                "title": "Average Wind Direction",
+                "measurement": "default",
+                "unitType": "other",
+                "units": "\u00b0"
+            }
+        },
+        "hourlyWeather": {
+            "tempF_hour": {
+                "title": "Temperature",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "dwptF_hour": {
+                "title": "Dew Point",
+                "measurement": "default",
+                "unitType": "temperature",
+                "units": "\u00b0F"
+            },
+            "prcpIN_hour": {
+                "title": "Precipitation",
+                "measurement": "default",
+                "unitType": "height",
+                "units": "in"
+            },
+            "wspdMPH_hour": {
+                "title": "Average Wind Speed",
+                "measurement": "default",
+                "unitType": "speed",
+                "units": "mph"
+            },
+            "presPSI_hour": {
+                "title": "Average Pressure",
+                "measurement": "default",
+                "unitType": "pressure",
+                "units": "psi"
+            },
+            "temp": {
+                "title": "Temperature",
+                "measurement": "metric",
+                "unitType": "temperature",
+                "units": "\u00b0C"
+            },
+            "dwpt": {
+                "title": "Dew Point",
+                "measurement": "metric",
+                "unitType": "temperature",
+                "units": "\u00b0C"
+            },
+            "prcp": {
+                "title": "Precipitation",
+                "measurement": "metric",
+                "unitType": "height",
+                "units": "mm"
+            },
+            "wspd": {
+                "title": "Average Wind Speed",
+                "measurement": "metric",
+                "unitType": "speed",
+                "units": "km / h"
+            },
+            "pres": {
+                "title": "Average Pressure",
+                "measurement": "metric",
+                "unitType": "pressure",
+                "units": "hPa"
+            },
+            "rhum": {
+                "title": "Relative Humidity",
+                "measurement": "default",
+                "unitType": "other",
+                "units": "%"
+            },
+            "wdir": {
+                "title": "Average Wind Direction",
+                "measurement": "default",
+                "unitType": "other",
+                "units": "\u00b0"
+            }
+        }
+    }
+}
