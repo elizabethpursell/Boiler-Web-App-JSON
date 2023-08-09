@@ -1,0 +1,12 @@
+{
+    "sets": {
+        dataset name (data, dailyWeather, hourlyWeather) (str): {
+            set keyword (str): {
+                "title": dataset label shown on graph legend (str),
+                "measurement": default, setpoint, difference, metric (str),
+                "unitType": temperature, current, frequency, pressure, height, degrees, percent, speed, custom (str),
+                "units": degrees, mA / V / %, RPM, F, C, in, mph, psi, HDD, mm, km/h, hPa, %, custom (str)
+            }
+        }
+    }
+}
