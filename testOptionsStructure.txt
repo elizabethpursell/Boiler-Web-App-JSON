@@ -1,0 +1,61 @@
+{
+    "tests": {
+        test number (str): {
+            "title": describes error conditions (str),
+            "type": default, duration, daily weather, hourly weather, or all weather (str),
+            "sets": [sets to plot/analyze/test] (list of str),
+            "error": [
+                {
+                    "type": set, value, custom, abs based on what set1/set2 comparison (str),
+                    "set1": name of first set to compare (str),
+                    "set2": {
+                        "name": name of set to compare to set1; only for set or custom type (str),
+                        "value": value to compare to set1 for value type; constant to adjust set2 by for custom type (float),
+                        "operation": +, -, *, / based on operation to adjust set2 by value; only for custom type (str)
+                    },
+                    "compare": compare set1 to set2 with >, <, >=, <=, ==, or !=; == and != not for abs type (str)
+                },
+                "and" or "or"; only if multiple conditions needed (str)
+            ],
+            "errorDuration": {
+                "value": duration to check error condition for; only for duration type (float),
+                "compare": > or < based on checking if over or under duration value; only for duration type (str)
+            },
+            "warning": [
+                {
+                    "type": set, value, or custom based on what set1 is compared to (str),
+                    "set1": name of first set to compare (str),
+                    "set2": {
+                        "name": name of set to compare to set1; only for set or custom type (str),
+                        "value": value to compare to set1 for value type; constant to adjust set2 by for custom type (float),
+                        "operation": +, -, *, / based on operation to adjust set2 by value; only for custom type (str)
+                    },
+                    "compare": compare set1 to set2 with >, <, >=, <=, ==, or !=; == and != not for abs type (str)
+                },
+                "and" or "or"; only if multiple conditions needed (str)
+            ],
+            "warningDuration": {
+                "value": duration to check warning condition for; only for duration type (float),
+                "compare": > or < based on checking if over or under duration value; only for duration type (str)
+            },
+            "options": {
+                 "setName": {
+                     "title": label shown on graph legend (str),
+                     "axisID": left or right (str),
+                     "units": degrees, mA / V / %, RPM, F, C, in, mph, psi, HDD, mm, km/h, hPa, % (str),
+                     "thresholdLabel": threshold description shown in dataset popup (str),
+                     "thresholdType": value, none, set, custom, exists, or abs (str),
+                     "thresholdFill": value or set type = above, below, or none; none type = none;
+                         custom type = none, above, or below; exists type = all;
+                         abs type = split or between (str),
+                 }
+             },
+             "axisTitles": {
+                 "left": label for left axis (str),
+                 "right": label for right axis; same as left unless two axes needed (str)
+             },
+             "causes": causes column in test explanations table on help page; message shown on error summary when test fails (str),
+             "importance": importance column in test explanations table on help page (str)
+        }
+    }
+}
