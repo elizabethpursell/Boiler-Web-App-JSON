@@ -41,9 +41,6 @@ class NuroConnect:
         self.coordsKey = config.coordsKey
         self.coords = None
         
-        self.weatherAPI = config.weatherAPI
-        self.weatherKey = config.weatherKey
-        
         self.dailyWeather = None
         self.hourlyWeather = None
         
