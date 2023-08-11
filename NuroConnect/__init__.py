@@ -219,17 +219,6 @@ class NuroConnect:
             return r.text
 
     def getBoilerImage(self, model):
-        ### nuro connect api call to dynamically get boiler models ###
-        # headers = {"authorization": self.auth}
-        # r = requests.get('https://app.nuroconnect.com/api/BoilerModels', headers=headers, verify=False)
-        # if r.ok:
-        #     r = r.json()
-        #     # search for model in boiler model list
-        #     for i in range(len(r)):
-        #         if(r[i]['modelKey'] == model):
-        #             return f"https://app.nuroconnect.com/api/BoilerImages/view/{r[i]['imageFile']}.png"
-    
-        ### static method of getting boiler models ###
         with open(os.getcwd() + '/static/txt/boilerModels.txt') as f:
             json_data = json.load(f)
             for i in range(len(json_data)):
@@ -237,45 +226,14 @@ class NuroConnect:
                     return f"https://app.nuroconnect.com/api/BoilerImages/view/{json_data[i]['imageFile']}.png"
 
     def getBoilerState(self, state):
-        ### nuro connect api call to dynamically get boiler states ###
-        # headers = {"authorization": self.auth}
-        # r = requests.get('https://app.nuroconnect.com/api/BoilerStates', headers=headers, verify=False)        
-        # if r.ok:
-        #     r = r.json()
-        #     return r[state]['text']
-
-        ### static method of getting boiler states ###
         with open(os.getcwd() + '/static/txt/boilerStates.txt') as f:
             json_data = json.load(f)
             return json_data[state]['text']
 
     def getBoilerStatus(self, status):
-        ### nuro connect api call to dynamically get boiler statuses ###
-        # headers = {"authorization": self.auth}
-        # r = requests.get('https://app.nuroconnect.com/api/BoilerStatuses', headers=headers, verify=False)        
-        # if r.ok:
-        #     r = r.json()
-        #     return r[status]['text']
-        
-        ### static method of getting boiler statuses ###
         with open(os.getcwd() + '/static/txt/boilerStatuses.txt') as f:
             json_data = json.load(f)
             return json_data[status]['text']
-
-    def experimental(self):
-        if self.isAuthenticated():
-            # params = {
-            #     "filter": '{"where": {"receivedDate":{"gte":"' + str(startTime) + '","lt":"' + str(endTime) + '"}}, "order":"receivedDate DESC", "skip": 0, "limit": 360, "interval": ' + str(interval) + '}'
-            # }
-            boilerID = '0d134902-b2f6-4c6b-8820-5c5071df80d0'
-            siteID = '51d97a7a-4e1f-4388-a6e9-7c4582f16c15'
-            headers = {"authorization": self.auth}
-            r = requests.get(self.endpoint + "/#!/boiler-details/" + siteID + "/" + boilerID, headers=headers, verify=False)
-
-            if r.ok:
-                return r.text
-        else:
-            raise UnauthenticatedException()
 
     def getUser(self, id, userId):
         headers = {"authorization": id}
