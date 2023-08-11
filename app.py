@@ -47,20 +47,6 @@ def logout():
         cache["boilers"] = "none"
     return resp
 
-# @app.route('/recent-data-get')
-# def recentDataGet():
-#     if(nc.isAuthenticated()):
-#         return render_template('recentData.html')
-#     else:
-#         return render_template('home.html')
-
-# @app.route('/data-get')
-# def dataGet():
-#     if(nc.isAuthenticated()):
-#         return render_template('data.html')
-#     else:
-#         return render_template('home.html')
-
 @app.route('/diagnostics/<boiler_name>/<boiler_id>')
 def analyzeDataRender(boiler_name, boiler_id):
     authenticated = request.cookies.get('authenticated')
@@ -71,13 +57,6 @@ def analyzeDataRender(boiler_name, boiler_id):
         return render_template('analyzeData.html', authenticated = True, firstName = firstName, lastName = lastName, company = company, boiler_name = boiler_name, boiler_id = boiler_id, pageName = "Diagnostics")
     else:
         return render_template('home.html', authenticated = False, pageName = "Logout")
-
-# @app.route('/dev-get')
-# def devGet():
-#     if(nc.isAuthenticated()):
-#         return render_template('dev.html')
-#     else:
-#         return render_template('home.html')
 
 @app.route('/profile')
 def profile():
@@ -136,13 +115,6 @@ def help():
     else:
         return render_template('home.html', authenticated = False, pageName = "Logout")
 
-# @app.route('/dev')
-# def dev():
-#     if(nc.isAuthenticated()):
-#         return nc.experimental()
-#     else:
-#         return {"success": False}
-
 @app.route('/available-boilers')
 def availableBoilersGet():
     authenticated = request.cookies.get('authenticated')
@@ -171,39 +143,6 @@ def user():
         return {"success": True, "firstName": firstName, "lastName": lastName}
     else:
         return {"success": False}
-
-# @app.route('/recent-data-post', methods=['POST'])
-# def recentDataPost():
-#     if(nc.isAuthenticated()):
-#         boiler_id = request.form.get('boiler_id')
-#         boiler_info = nc.getBoilerInfo(boiler_id)
-#         if(boiler_info['status'] == 16): # status = 16 seems to mean boiler is disconnected
-#             return {"success": False}
-#         result = nc.getLatestBoilerDataRaw(boiler_id, 10)
-#         if(result == None):
-#             return {"success": False}
-#         else:
-#             return result
-#     else:
-#         return {"success": False}
-
-# @app.route('/data-post', methods=['POST'])
-# def dataPost():
-#     if(nc.isAuthenticated()):
-#         boiler_id = request.form.get('boiler_id')
-#         start_time = request.form.get('start_time')
-#         end_time = request.form.get('end_time')
-#         interval = request.form.get('interval')
-#         boiler_info = nc.getBoilerInfo(boiler_id)
-#         if(boiler_info['status'] == 16): # status = 16 seems to mean boiler is disconnected
-#             return {"success": False}
-#         result = nc.getBoilerData(boiler_id, start_time, end_time, interval)
-#         if(result == None):
-#             return {"success": False}
-#         else:
-#             return result
-#     else:
-#         return {"success": False}
 
 @app.route('/analyze-data-post', methods=['POST'])
 def analyzeDataPost():
